@@ -1,6 +1,6 @@
 # whitecity
 
-Blog enfien for WhiteCity Code
+Blog engine for WhiteCity Code
 
 ## Prerequisites
 
