@@ -16,7 +16,7 @@ To start a web server for the application, run:
     
 Application requires a `settings.json` file with the following structure:
 
-    {"md-folder":"whitecity/blog","smtp-host":"smtp.something.com","smtp-user":"test@test.com","smtp-pass":"passhere","smtp-port":587,"mail-from":"mine@mine.com","mail-to":"mine@mine.com","mail-subject":"New contact at My Blog"}
+    {"md-folder":"whitecity/blog","smtp-host":"smtp.something.com","smtp-user":"test@test.com","smtp-pass":"passhere","smtp-port":587,"smtp-ssl":"none","mail-from":"mine@mine.com","mail-to":"mine@mine.com","mail-subject":"New contact at My Blog"}
 
 ## License
 

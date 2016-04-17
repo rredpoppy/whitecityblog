@@ -1,4 +1,4 @@
-(defproject whitecity "0.7"
+(defproject whitecity "0.8"
 
   :description "WhiteCity Code blog app"
   :url "http://www.whitecitycode.com"
