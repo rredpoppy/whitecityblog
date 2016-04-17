@@ -6,6 +6,18 @@
             [whitecity.blogfiles :refer :all]
             [whitecity.settings :refer [settings]]))
 
+(defn smtp-settings []
+  (let [host (get @settings "smtp-host")
+        user (get @settings "smtp-user")
+        pass (get @settings "smtp-pass")
+        port (get @settings "smtp-port")
+        ssl (get @settings "smtp-ssl")
+        base-params {:host host :port port :user user :pass pass}]
+        (cond
+          (= ssl "ssl") (assoc base-params :ssl true)
+          (= ssl "tls") (assoc base-params :tls true)
+          :else base-params)))
+
 (defapi service-routes
   ; (ring.swagger.ui/swagger-ui
   ;  "/swagger-ui")
@@ -19,10 +31,7 @@
          :body     [contact {:name String, :email String, :msg String}]
          (when-let [{:keys [name email msg]} contact]
             (let [{:keys [code error message]} 
-              (send-message {:host (get @settings "smtp-host")
-                             :user (get @settings "smtp-user")
-                             :pass (get @settings "smtp-pass")
-                             :port (get @settings "smtp-port")}
+              (send-message (smtp-settings)
                             {:from (get @settings "mail-from")
                              :to (get @settings "mail-to")
                              :reply-to email
