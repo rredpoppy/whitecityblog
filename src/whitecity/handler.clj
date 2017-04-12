@@ -1,6 +1,6 @@
 (ns whitecity.handler
   (:require [compojure.core :refer [defroutes routes wrap-routes]]
-            [whitecity.routes.services :refer [service-routes]]
+            [whitecity.routes.services :refer [service-routes cors-mw]]
             [whitecity.middleware :as middleware]
             [compojure.route :as route]
             [taoensso.timbre :as timbre]
@@ -35,7 +35,7 @@
 
 (def app-routes
   (routes
-    (var service-routes)
+    (cors-mw (var service-routes))
     (route/not-found "Not found")))
 
 (def app (middleware/wrap-base #'app-routes))
