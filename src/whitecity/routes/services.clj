@@ -3,7 +3,6 @@
             [compojure.api.sweet :refer :all]
             [schema.core :as s]
             [postal.core :refer [send-message]]
-            [whitecity.blogfiles :refer :all]
             [whitecity.settings :refer [settings]]))
 
 (defn smtp-settings []
@@ -25,7 +24,7 @@
   (fn [request]
     (let [response (handler request)]
       (-> response
-          (assoc-in [:headers "Access-Control-Allow-Origin"] "*")
+          (assoc-in [:headers "Access-Control-Allow-Origin"] "https://whitecitycode.com")
           (assoc-in [:headers "Access-Control-Allow-Methods"] "GET, POST, OPTIONS")
           (assoc-in [:headers "Access-Control-Allow-Headers"] "Authorization, Content-Type")))))
 
@@ -60,20 +59,4 @@
                                         :content (str "Message from " name " (" email "):\n" msg)}]})]
              (if (== code 0)
                (ok message)
-               (status 500)))))
-
-  (GET* "/blogposts/:slug" [slug]
-        :return      (s/maybe BlogPost)
-        :path-params [slug :- String]
-        :summary     "Retrieve a blog post by slug"
-        (let [files (get-md-files (get @settings "md-folder"))
-              postFile (get-post-file slug files)]
-          (when (not (nil? postFile))
-            (ok (get-article postFile)))))
-
-  (GET* "/blogposts" [page]
-        :return       Blog
-        :query-params [{page :- Long 0}]
-        :summary      "Retrieve a list of 9 blog posts per page starting with page {page}"
-        (let [pages  (get-file-pages (get-md-files (get @settings "md-folder")))]
-          (ok (get-blog page pages)))))
+               (status 500))))))

@@ -56,8 +56,8 @@
   (stop-http-server))
 
 (defn start-app [[port settings-file]]
-  (if (and 
-        (.isFile (io/file settings-file)) 
+  (if (and
+        (.isFile (io/file settings-file))
         (.endsWith (.getName (io/file settings-file))  ".json"))
     (read-settings! settings-file)
     (throw (Exception. (str "invalid settings-file: " settings-file))))

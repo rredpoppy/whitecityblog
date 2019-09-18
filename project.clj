@@ -1,16 +1,14 @@
-(defproject whitecity "0.9"
+(defproject whitecity "1.0"
 
-  :description "WhiteCity Code blog app"
-  :url "http://www.whitecitycode.com"
+  :description "WhiteCity Code contact app"
+  :url "http://whitecitycode.com"
 
   :dependencies [[org.clojure/clojure "1.7.0"]
-                 ; [selmer "0.8.8"]
                  [com.taoensso/timbre "4.0.2"]
                  [com.taoensso/tower "3.0.2"]
                  [markdown-clj "0.9.67"]
                  [environ "1.0.0"]
                  [compojure "1.4.0"]
-                 ;[ring-webjars "0.1.1"]
                  [ring/ring-defaults "0.1.5"]
                  [ring-ttl-session "0.1.1"]
                  [ring "1.4.0"
@@ -20,16 +18,14 @@
                  [bouncer "0.3.3"]
                  [prone "0.8.2"]
                  [org.clojure/tools.nrepl "0.2.10"]
-                 ; [org.webjars/bootstrap "3.3.5"]
-                 ; [org.webjars/jquery "2.1.4"]
                  [org.clojure/data.json "0.2.6"]
                  [metosin/compojure-api "0.22.1"]
-                 ; [metosin/ring-swagger-ui "2.1.1"]
                  [org.immutant/web "2.0.2"]
+                 [javax.activation/activation "1.1.1"]
                  [com.draines/postal "1.11.3"]]
 
   :min-lein-version "2.0.0"
-  :uberjar-name "whitecity.jar"
+  :uberjar-name "whitecity-1.0.jar"
   :jvm-opts ["-server"]
 
   :main whitecity.core
@@ -45,8 +41,8 @@
    :project/dev  {:dependencies [[ring/ring-mock "0.2.0"]
                                  [ring/ring-devel "1.4.0"]
                                  [pjstadig/humane-test-output "0.7.0"]]
-                  
-                  
+
+
                   :repl-options {:init-ns whitecity.core}
                   :injections [(require 'pjstadig.humane-test-output)
                                (pjstadig.humane-test-output/activate!)]

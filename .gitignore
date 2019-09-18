@@ -11,3 +11,5 @@ profiles.clj
 *.log
 settings.json
 staticsite
+.DS_Store
+*.swp
